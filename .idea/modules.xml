@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LiccUtils.iml" filepath="$PROJECT_DIR$/LiccUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Snippets/Snippets.iml" filepath="$PROJECT_DIR$/Snippets/Snippets.iml" />
     </modules>
   </component>
 </project>
-
