@@ -1,4 +1,4 @@
-package com.example.overriding.equals;
+package licc.utils.example.overriding.equals;
 
 /**
  * Created by user on 2015/2/5.

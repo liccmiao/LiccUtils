@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package licc.utils.example.helloworld;
 
 /**
  * Created by mengchenli on 2015/2/4.

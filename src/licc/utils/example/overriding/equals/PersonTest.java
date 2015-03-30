@@ -1,4 +1,4 @@
-package com.example.overriding.equals;
+package licc.utils.example.overriding.equals;
 
 import org.junit.Test;
 
