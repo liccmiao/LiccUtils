@@ -27,6 +27,10 @@ public class Rectangle implements Cloneable {
     @Override
     protected Rectangle clone() throws CloneNotSupportedException {
         return (Rectangle)super.clone();
+        /*
+         * Rectangle c = (Rectangle)super.clone();
+         * modify c field-by-field if Rectangle contains any mutable field
+         */
     }
 
     @Override
