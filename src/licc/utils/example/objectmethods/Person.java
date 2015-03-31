@@ -1,4 +1,4 @@
-package licc.utils.example.overriding.equals;
+package licc.utils.example.objectmethods;
 
 /**
  * Created by user on 2015/2/5.

@@ -1,8 +1,6 @@
-package licc.utils.example.objclone;
+package licc.utils.example.objectmethods;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class RectangleTest {
 

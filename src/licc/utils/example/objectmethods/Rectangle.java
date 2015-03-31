@@ -1,4 +1,4 @@
-package licc.utils.example.objclone;
+package licc.utils.example.objectmethods;
 
 /**
  * Created by user on 2015/3/30.

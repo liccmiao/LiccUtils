@@ -1,4 +1,4 @@
-package licc.utils.example.overriding.equals;
+package licc.utils.example.objectmethods;
 
 import org.junit.Test;
 
