@@ -1,4 +1,4 @@
-package licc.utils.example.collections;
+package licc.utils.example.collections.arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;

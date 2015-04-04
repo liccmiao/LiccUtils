@@ -1,4 +1,4 @@
-package licc.utils.example.collections;
+package licc.utils.example.collections.arrays;
 
 import org.junit.Test;
 
