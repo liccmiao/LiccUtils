@@ -31,7 +31,4 @@ public class ConstructorThrow {
         }
         System.out.println(ConstructorThrow.flag);
     }
-}///Output:
-///false
-///file not exist : C:\Users\user\IdeaProjects\LiccUtils\not-exist-file (系统找不到指定的文件。)
-///true
+}
