@@ -135,6 +135,33 @@ public class PatternMatcherExampleTest {
         assert (br.toString().equals(res));
     }
 
+    /*
+     * Back reference in java regular expressions
+     * with the example we can see \\i where i has same meaning with i in Matcher.group(i)
+     * can be used to reference a repeated pattern
+     */
+    @Test
+    public void testBackRefWithRE() {
+        Pattern p1 = Pattern.compile("(\\d\\d\\d)\\1");
+        Matcher m1 = p1.matcher("123123");
+        Matcher m2 = p1.matcher("123456");
+
+        assert (m1.matches());
+        assert (!m2.matches());
+
+        Pattern p2 = Pattern.compile("\\b(\\w+)\\b[\\w\\W]*\\b\\1\\b");
+        Matcher m3 = p2.matcher("unique is not duplicate but unique");
+        Matcher m4 = p2.matcher("duplicate is duplicate");
+        Matcher m5 = p2.matcher("duplicate is duplicate.");
+        Matcher m6 = p2.matcher("Duplicate is duplicate");
+        assert (m3.matches());
+        assert (m4.matches());
+        assert (!m5.matches());     // for the dot \\.
+        assert (!m6.matches());     // for the UpperCase D
+
+
+    }
+
     private void matchesLostPat1(ArrayList<String> inputs) {
         PatternMatcherExample e = new PatternMatcherExample();
         int count = 0;
