@@ -159,6 +159,12 @@ public class PatternMatcherExampleTest {
         assert (!m5.matches());     // for the dot \\.
         assert (!m6.matches());     // for the UpperCase D
 
+        Pattern p3 = Pattern.compile(Pattern.quote("\\d\\d\\d"));
+        Matcher m7 = p3.matcher("\\d\\d\\d");       //literal \d\d\d
+        assert m7.matches();
+        Pattern p4 = Pattern.compile("\\\\d\\\\d\\\\d");    //same as p3
+        Matcher m8 = p4.matcher("\\d\\d\\d");
+        assert m8.matches();
 
     }
 
