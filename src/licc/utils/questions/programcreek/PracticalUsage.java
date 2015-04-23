@@ -1,6 +1,6 @@
 package licc.utils.questions.programcreek;
 
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * Created by mengchenli on 2015/4/22.
@@ -31,6 +31,26 @@ public class PracticalUsage {
         }
 
         return retList;
+    }
+
+    /*
+     * from
+     * http://www.programcreek.com/2012/02/java-method-to-shuffle-an-int-array-with-random-order/
+     */
+    public static void shuffleWithCollectionShuffle(Integer[] input) {
+        Collections.shuffle(Arrays.asList(input));
+    }
+
+    public static void shuffleWithArrayInPlace(int[] input) {
+        Random r = new Random(37);
+        for (int i = 0; i < input.length; ++i) {
+            int tmpIdex = r.nextInt(input.length);
+            if (tmpIdex != i) {
+                int t = input[i];
+                input[i] = input[tmpIdex];
+                input[tmpIdex] = t;
+            }
+        }
     }
 
 }
