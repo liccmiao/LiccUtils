@@ -1,7 +1,7 @@
-package licc.utils.javarevisitedquestions;
+package licc.utils.questions.javavisited;
 
 /**
- * Created by user on 2015/3/31.
+ * Created by mengchenli on 2015/3/31.
  */
 public class ReverseArrInPlace {
     public static void reverseArr1(int[] arr) {

@@ -1,4 +1,4 @@
-package licc.utils.javarevisitedquestions;
+package licc.utils.questions.javavisited;
 
 import org.junit.Test;
 

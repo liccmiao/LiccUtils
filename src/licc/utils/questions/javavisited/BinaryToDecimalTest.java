@@ -1,8 +1,6 @@
-package licc.utils.javarevisitedquestions;
+package licc.utils.questions.javavisited;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class BinaryToDecimalTest {
 

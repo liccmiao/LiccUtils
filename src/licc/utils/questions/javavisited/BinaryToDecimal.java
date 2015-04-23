@@ -1,4 +1,4 @@
-package licc.utils.javarevisitedquestions;
+package licc.utils.questions.javavisited;
 
 /**
  * Created by mengchenli on 2015/3/30.

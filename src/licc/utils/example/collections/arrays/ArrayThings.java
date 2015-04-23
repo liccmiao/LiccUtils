@@ -80,7 +80,7 @@ public class ArrayThings {
 
     //9. Reverse an array
     // not in place but return a new Array
-    // for inplace reverse, see ReverseArrInPlace in pkg javarevisitedquestions
+    // for in place reverse, see ReverseArrInPlace in pkg java revisited questions
     public static int[] reverseArr(int[] arr) {
         if (arr == null) return null;
         int[] ret = new int[arr.length];
