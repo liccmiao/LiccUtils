@@ -1,4 +1,4 @@
-package licc.utils.example.collections;
+package licc.utils.example.collections.maps;
 
 import java.util.HashMap;
 import java.util.Iterator;
