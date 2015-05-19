@@ -3,7 +3,7 @@ package licc.utils.example.collections.arrays;
 import java.util.Arrays;
 
 /**
- * Created by user on 2015/4/4.
+ * Created by mengchenli on 2015/4/4.
  */
 public class ArraysSort {
 
@@ -39,10 +39,10 @@ public class ArraysSort {
         arrss[1] = new ArraysSortSub(1, 3);
         arrss[2] = new ArraysSortSub(3, 2);
 
-        System.out.println(Arrays.deepToString(arrss));
+        System.out.println(Arrays.toString(arrss));
         Arrays.sort(arrss, new ArraysSortComparator());
-        System.out.println(Arrays.deepToString(arrss));
+        System.out.println(Arrays.toString(arrss));
         Arrays.sort(arrss, new ArraysSortSubComparator());
-        System.out.println(Arrays.deepToString(arrss));
+        System.out.println(Arrays.toString(arrss));
     }
 }
