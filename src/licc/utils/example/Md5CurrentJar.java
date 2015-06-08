@@ -1,3 +1,5 @@
+package licc.utils.example;
+
 import java.io.*;
 import java.math.BigInteger;
 import java.net.URISyntaxException;
@@ -7,7 +9,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Logger;
 
 /**
- * Created by user on 2015/3/3.
+ * Created by mengchenli on 2015/3/3.
  */
 public class Md5CurrentJar {
     private static Logger log = Logger.getLogger(Md5CurrentJar.class.getName());
