@@ -4,34 +4,46 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URI;
 import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributeView;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.DosFileAttributes;
-import java.nio.file.attribute.FileAttribute;
 
 public class FileOperationsTest {
 
-    private Path file2Delete = Paths.get("E:\\file2Delete.txt");
-    private Path file2Copy = Paths.get("E:\\file2Copy.txt");
-    private Path file2CopyDst = Paths.get("E:\\file2CopyDst.txt");
-    private Path file2Move = Paths.get("E:\\file2Move.txt");
-    private Path file2MoveDst = Paths.get("E:\\file2MoveDst.txt");
-
+    private Path file2Delete = Paths.get("C:\\file2Delete.txt");
+    private Path file2Copy = Paths.get("C:\\file2Copy.txt");
+    private Path file2CopyDst = Paths.get("C:\\file2CopyDst.txt");
+    private Path file2Move = Paths.get("C:\\file2Move.txt");
+    private Path file2MoveDst = Paths.get("C:\\file2MoveDst.txt");
+    private Path createDir = Paths.get("C:\\testDir");
+    private Path createFile = createDir.resolve(Paths.get("testFile"));
     private Logger log = Logger.getLogger(FileOperationsTest.class);
 
     @Test
     public void testFileExistCheck() throws IOException {
-        assert Files.exists(Paths.get("E:\\test.txt"));
-        assert Files.notExists(Paths.get("E:\\NotExists.txt"));
-        Path p1 = Paths.get("D:\\RWorkspace\\GettingAndCleaningData\\temp.xlsx");
-        Path p2 = Paths.get(URI.create("file:/D:/RWorkspace/GettingAndCleaningData/temp.xlsx"));
+        assert Files.exists(Paths.get("C:\\Windows"));
+        assert Files.notExists(Paths.get("C:\\NotExists.txt"));
+        Path p1 = Paths.get("C:\\Windows");
+        Path p2 = Paths.get(URI.create("file:/C:/Windows"));
         assert Files.isSameFile(p1, p2);
         assert Files.isReadable(p1);
         assert Files.isWritable(p1);
         assert Files.isExecutable(p1);
+    }
+
+    @Test
+    public void testFileCreate() {
+        try {
+            Files.createDirectories(createDir);
+            Files.createFile(createFile);
+            assert Files.exists(createDir);
+            assert Files.exists(createFile);
+        } catch (IOException e) {
+            log.warn(e);
+        }
+
     }
 
     @Before
@@ -44,6 +56,9 @@ public class FileOperationsTest {
         if (Files.notExists(file2Move))
             Files.createFile(file2Move);
         Files.deleteIfExists(file2MoveDst);
+        Files.deleteIfExists(createFile);
+        Files.deleteIfExists(createDir);
+
     }
 
     @Test
@@ -80,7 +95,7 @@ public class FileOperationsTest {
 
     @Test
     public void testFileAtrributes() {
-        Path p = Paths.get("C:\\Program Files\\Java\\jdk1.7.0\\bin\\java.exe");
+        Path p = Paths.get("C:\\Windows\\System32\\notepad.exe");
         try {
             BasicFileAttributes basicAttr = Files.readAttributes(p, BasicFileAttributes.class);
             System.out.println("[size=" + basicAttr.size() + "]" +
@@ -101,7 +116,55 @@ public class FileOperationsTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    @Test
+    public void mergeFilesTest() {
+        String file1 = "C:\\mergeIn1.txt";
+        String file2 = "C:\\mergeIn2.txt";
+
+        File f1 = new File(file1);
+        File f2 = new File(file2);
+        File merged = new File("C:\\mergedFile.txt");
+
+        mergeFiles(new File[]{f1, f2}, merged);
+        assert Files.exists(Paths.get("C:\\mergedFile.txt"));
+    }
+
+    private void mergeFiles(File[] srcFiles, File mergedPath) {
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+
+        try {
+            fw = new FileWriter(mergedPath);
+            bw = new BufferedWriter(fw);
+            BufferedReader br = null;
+            for (File f : srcFiles) {
+                if (f.exists()) {
+                    br = new BufferedReader(new FileReader(f));
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        bw.write(line);
+                        bw.newLine();
+                    }
+                    br.close();
+                }
+            }
+
+            bw.flush();
+        } catch (IOException e) {
+            log.error(e);
+        } finally {
+            try {
+                if (bw != null)
+                    bw.close();
+                if (fw != null)
+                    fw.close();
+            } catch (IOException e) {
+                log.error("writer close error: " + e);
+            }
+
+        }
 
     }
 }
