@@ -28,9 +28,9 @@ public class FileOperationsTest {
         Path p1 = Paths.get("C:\\Windows");
         Path p2 = Paths.get(URI.create("file:/C:/Windows"));
         assert Files.isSameFile(p1, p2);
-        assert Files.isReadable(p1);
-        assert Files.isWritable(p1);
-        assert Files.isExecutable(p1);
+        System.out.println(Files.isReadable(p1));
+        System.out.println(Files.isWritable(p1));
+        System.out.println(Files.isExecutable(p1));
     }
 
     @Test
@@ -165,6 +165,43 @@ public class FileOperationsTest {
             }
 
         }
+    }
 
+    @Test
+    public void testMergeTwoDir() throws IOException {
+        Path d1 = Paths.get("C:\\Users\\Public\\Documents\\d1");
+        Path d2 = Paths.get("C:\\Users\\Public\\Documents\\d2");
+        mergeTwoDir(d1, d2, true);
+    }
+
+    /*
+     * copy files and sub dir from srcDir into dstDir
+     */
+    private void mergeTwoDir(Path srcDir, Path dstDir, boolean replaceExist) throws IOException {
+        if (srcDir == null || dstDir == null || !Files.isDirectory(srcDir) || !Files.isDirectory(dstDir))
+            return;
+        File srcFile = srcDir.toFile();
+        for (File f : srcFile.listFiles()) {
+            if (f.isDirectory()) {
+                Path p = f.toPath();
+                if (!Files.exists(dstDir.resolve(p.getFileName()))) {
+                    Path mkdir = Files.createDirectory(dstDir.resolve(p.getFileName()));
+                    mergeTwoDir(p, mkdir, replaceExist);
+                } else {
+                    if (!Files.isDirectory(dstDir.resolve(p.getFileName())))
+                        log.error("trying copy directory to exist regular file[" + p.toString() + "]");
+                    else {
+                        mergeTwoDir(p, dstDir.resolve(p.getFileName()), replaceExist);
+                    }
+                }
+            } else {
+                Path p = f.toPath();
+                if (replaceExist)
+                    Files.copy(p, dstDir.resolve(p.getFileName()), StandardCopyOption.REPLACE_EXISTING);
+                else {
+                    Files.copy(p, dstDir.resolve(p.getFileName()));
+                }
+            }
+        }
     }
 }
