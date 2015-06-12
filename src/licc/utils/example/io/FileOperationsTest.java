@@ -5,7 +5,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.DosFileAttributes;
@@ -20,6 +22,7 @@ public class FileOperationsTest {
     private Path createDir = Paths.get("C:\\testDir");
     private Path createFile = createDir.resolve(Paths.get("testFile"));
     private Logger log = Logger.getLogger(FileOperationsTest.class);
+    private static final String tabStr = "- -\\";
 
     @Test
     public void testFileExistCheck() throws IOException {
@@ -204,4 +207,50 @@ public class FileOperationsTest {
             }
         }
     }
+
+    @Test
+    public void testTraverseDir() {
+        Path p = Paths.get("C:\\Users\\Public\\Documents\\d1");
+        traverseDir(p, 0);
+    }
+
+    private void traverseDir(Path path, int depth) {
+        if (!Files.isDirectory(path)) {
+            printFileName("file:" + path.getFileName().toString(), depth);
+        } else {
+            File pFile = path.toFile();
+            printFileName("dir:" + pFile.getName(), depth);
+            for (File f : pFile.listFiles()) {
+                traverseDir(f.toPath(), depth + 1);
+            }
+        }
+    }
+
+    private void printFileName(String fileName, int depth) {
+        while (depth-- > 0)
+            System.out.print(tabStr);
+        System.out.println(fileName);
+    }
+
+    @Test
+    public void testDownloadImage() {
+        String imgUrl = "https://www.baidu.com/img/bdlogo.png";
+        downloadImage(imgUrl);
+    }
+
+    private void downloadImage(String imgUrl) {
+        try {
+            URL url = new URL(imgUrl);
+            InputStream is = url.openStream();
+            String fn = url.getFile();
+            Path dstImg = Paths.get("./figures/" + fn.substring(fn.lastIndexOf("/")));
+            Files.copy(is, dstImg, StandardCopyOption.REPLACE_EXISTING);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
