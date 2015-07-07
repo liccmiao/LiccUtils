@@ -7,17 +7,6 @@ import java.util.PriorityQueue;
  * Created by mengchenli on 2015/5/19.
  */
 
-
-//  Definition for singly-linked list.
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-        val = x;
-    }
-}
-
 public class MergeKSorted {
     public ListNode mergeKLists(ListNode[] lists) {
 
