@@ -47,12 +47,13 @@ public class FindMergeNode {
         }
         return p.data;
     }
+    class Node {
+        int data;
+        Node next;
+    }
 }
 
-class Node {
-    int data;
-    Node next;
-}
+
 
 
 
