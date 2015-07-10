@@ -21,25 +21,30 @@ public class PreInPostOrderTrvsTest extends TestCase {
     public void testPreorder() throws Exception {
         PreInPostOrderTrvs test = new PreInPostOrderTrvs();
         test.preorder(tree);
+        System.out.println();
     }
 
     public void testPreorder2() throws Exception {
         PreInPostOrderTrvs test = new PreInPostOrderTrvs();
         test.preorder2(tree);
+        System.out.println();
     }
 
     public void testInorder() throws Exception {
         PreInPostOrderTrvs test = new PreInPostOrderTrvs();
         test.inorder(tree);
+        System.out.println();
     }
 
     public void testPostorder() throws Exception {
         PreInPostOrderTrvs test = new PreInPostOrderTrvs();
         test.postorder(tree);
+        System.out.println();
     }
 
     public void testPostorder2() throws Exception {
         PreInPostOrderTrvs test = new PreInPostOrderTrvs();
         test.postorder2(tree);
+        System.out.println();
     }
 }

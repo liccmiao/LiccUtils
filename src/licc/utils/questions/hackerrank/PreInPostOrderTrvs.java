@@ -1,6 +1,7 @@
 package licc.utils.questions.hackerrank;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by mengc_000 on 2015/7/9.
@@ -9,7 +10,7 @@ public class PreInPostOrderTrvs {
     void preorder(Node root) {
         if (root == null)
             return;
-        Stack<Node> s = new Stack<>();
+        Deque<Node> s = new ArrayDeque<>();
         s.push(root);
         while (!s.isEmpty()) {
             Node v = s.pop();
@@ -24,7 +25,7 @@ public class PreInPostOrderTrvs {
     void preorder2(Node root) {
         if (root == null)
             return;
-        Stack<Node> s = new Stack<>();
+        Deque<Node> s = new ArrayDeque<>();
         Node curr = root;
         while (curr != null || !s.isEmpty()) {
             while (curr != null) {
@@ -42,7 +43,7 @@ public class PreInPostOrderTrvs {
     void inorder(Node root) {
         if (root == null)
             return;
-        Stack<Node> s = new Stack<>();
+        Deque<Node> s = new ArrayDeque<>();
         Node curr = root;
         while (curr != null || !s.isEmpty()) {
             while (curr != null) {
@@ -61,10 +62,10 @@ public class PreInPostOrderTrvs {
     void postorder(Node root) {
         if (root == null)
             return;
-        Stack<Node> s1 = new Stack<>();
-        Stack<Node> s2 = new Stack<>();
+        Deque<Node> s1 = new ArrayDeque<>();
+        Deque<Node> s2 = new ArrayDeque<>();
         s1.push(root);
-        while (!s1.empty()) {
+        while (!s1.isEmpty()) {
             Node v = s1.pop();
             s2.push(v);
             if (v.left != null)
@@ -72,7 +73,7 @@ public class PreInPostOrderTrvs {
             if (v.right != null)
                 s1.push(v.right);
         }
-        while (!s2.empty()) {
+        while (!s2.isEmpty()) {
             Node v = s2.pop();
             System.out.print(v.data + " ");
         }
@@ -81,7 +82,7 @@ public class PreInPostOrderTrvs {
     void postorder2(Node root) {
         if (root == null)
             return;
-        Stack<Node> s = new Stack<>();
+        Deque<Node> s = new ArrayDeque<>();
         Node curr = root;
         Node previsit = null;
         while (curr != null || !s.isEmpty()) {
