@@ -1,5 +1,6 @@
 package licc.utils.questions.hackerrank;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -42,7 +43,7 @@ public class TruckTour {
     /*
      * some optimization
      */
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         Scanner in = new Scanner(System.in);
         int N = in.nextInt();
         int[] a = new int[N];
@@ -51,12 +52,12 @@ public class TruckTour {
             a[i] = in.nextInt();
             d[(i + 1) % N] = in.nextInt();
         }
-        int i = 0, j = (i + 1)%N, total = a[i] - d[j];
+        int i = 0, j = (i + 1) % N, total = a[i] - d[j];
         while (j != i) {
             if (total < 0) {
                 if (j > i) {
                     i = j;
-                    j = (i + 1)%N;
+                    j = (i + 1) % N;
                     total = a[i] - d[j];
                 } else
                     break;
