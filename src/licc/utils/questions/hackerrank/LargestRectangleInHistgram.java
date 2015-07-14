@@ -1,6 +1,7 @@
 package licc.utils.questions.hackerrank;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.Scanner;
 
@@ -8,7 +9,10 @@ import java.util.Scanner;
  * Created by user on 2015/7/13.
  */
 public class LargestRectangleInHistgram {
-    public static void main(String[] args) {
+    /*
+     * original solution
+     */
+    public static void main1(String[] args) {
         /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
         Scanner in = new Scanner(System.in);
         int N = in.nextInt();
@@ -52,6 +56,33 @@ public class LargestRectangleInHistgram {
             if (area > largest)
                 largest = area;
         }
+        System.out.println(largest);
+    }
+
+    /*
+     * some optimization
+     */
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner in = new Scanner(System.in);
+        int N = in.nextInt();
+        int[] arr = new int[N + 1];
+        Deque<Integer> sIndex = new ArrayDeque<>();
+
+
+        for (int i = 0; i < N; ++i) {
+            arr[i] = in.nextInt();
+        }
+        int largest = 0;
+        arr = Arrays.copyOf(arr, arr.length + 1);
+        for (int i = 0; i < N; ++i) {
+            while (!sIndex.isEmpty() && arr[i] <= arr[sIndex.peek()]) {
+                int left = sIndex.pop();
+                largest = Math.max(largest, arr[left] * (i - (sIndex.isEmpty() ? 0 : (sIndex.peek() + 1))));
+            }
+            sIndex.push(i);
+        }
+
         System.out.println(largest);
     }
 }
